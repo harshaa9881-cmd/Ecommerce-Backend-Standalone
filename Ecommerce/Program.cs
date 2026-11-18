@@ -21,9 +21,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 // Register authorization services
 builder.Services.AddAuthorization();
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductService, ProductService>();
+
 var app = builder.Build();
 
 // Configure HTTP request pipeline
