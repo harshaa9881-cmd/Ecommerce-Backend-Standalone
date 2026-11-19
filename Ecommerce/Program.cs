@@ -87,6 +87,10 @@ builder.Services.AddAuthentication(options =>
 
 var app = builder.Build();
 
+await AdminSeeder.SeedAdminAsync(
+    app.Services,
+    app.Configuration);
+
 // Configure HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
@@ -95,6 +99,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

@@ -1,7 +1,7 @@
 ﻿using Ecommerce.DTOs.Category;
 using Ecommerce.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.AspNetCore.Authorization;
 namespace Ecommerce.Controllers
 {
     [ApiController]
@@ -26,6 +26,7 @@ namespace Ecommerce.Controllers
 
         // POST: api/categories
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<CategoryResponseDto>> Create(
             [FromBody] CreateCategoryDto dto)
         {
@@ -36,6 +37,7 @@ namespace Ecommerce.Controllers
 
         // PUT: api/categories/{id}
         [HttpPut("{id:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<CategoryResponseDto>> Update(
             int id,
             [FromBody] UpdateCategoryDto dto)
@@ -55,6 +57,7 @@ namespace Ecommerce.Controllers
 
         // DELETE: api/categories/{id}
         [HttpDelete("{id:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             try
